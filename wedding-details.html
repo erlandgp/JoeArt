@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detail Acara Pernikahan - JoeArt</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="wedding-details.css">
+    <link rel="stylesheet" href="css/location-helper.css">
+    <!-- OpenLayers -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ol@10.5.0/dist/ol.css">
+    <script src="https://cdn.jsdelivr.net/npm/ol@10.5.0/dist/ol.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ol-geocoder/dist/ol-geocoder.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/ol-geocoder/dist/ol-geocoder.min.js"></script>
+    <style>
+        #map {
+            height: 400px;
+            width: 100%;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+            margin: 8px 0;
+            background: #f8f9fa;
+        }
+        .ol-control {
+            background-color: rgba(255, 255, 255, 0.8) !important;
+            padding: 5px !important;
+            border-radius: 4px !important;
+        }
+        .ol-control button {
+            background-color: #008080 !important;
+            color: white !important;
+            border-radius: 4px !important;
+            width: 30px !important;
+            height: 30px !important;
+            line-height: 30px !important;
+            margin: 2px !important;
+        }
+        .ol-control button:hover {
+            background-color: #006666 !important;
+        }
+        .ol-zoom {
+            top: 10px;
+            left: auto;
+            right: 10px;
+        }
+        .ol-rotate {
+            top: 80px;
+            right: 10px;
+        }
+        .ol-attribution {
+            display: none;
+        }
+        #search-box {
+            margin-bottom: 10px;
+        }
+        .gcd-gl-btn {
+            background-color: #008080 !important;
+        }
+    </style>
+    
+    <style>
+        #map {
+            width: 100%;
+            height: 400px;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+            margin-top: 8px;
+        }
+        .ol-zoom {
+            top: 0.5em;
+            left: 0.5em;
+        }
+        .ol-zoom .ol-zoom-out {
+            margin-top: 204px;
+        }
+        .ol-zoomslider {
+            top: 2.5em;
+            left: 0.5em;
+        }
+        .ol-touch .ol-zoom .ol-zoom-out {
+            margin-top: 212px;
+        }
+        .ol-zoom-in.ol-has-tooltip:hover [role=tooltip],
+        .ol-zoom-in.ol-has-tooltip:focus [role=tooltip] {
+            display: none;
+        }
+        .ol-zoom-out.ol-has-tooltip:hover [role=tooltip],
+        .ol-zoom-out.ol-has-tooltip:focus [role=tooltip] {
+            display: none;
+        }
+        .hint {
+            display: block;
+            margin-top: 8px;
+            color: #666;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo-nav-group">
+                <div class="logo">
+                    <a href="index.html"><img src="images/logo.webp" alt="JoeArt Logo"></a>
+                </div>
+                <nav class="left-nav">
+                    <ul class="main-menu">
+                        <li><a href="index.html">Beranda</a></li>
+                        <li><a href="#" class="active">Buat Undangan</a></li>
+                        <li><a href="#">Template</a></li>
+                        <li><a href="#">Harga</a></li>
+                        <li><a href="#">Tentang Kami</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="header-actions">
+                <a href="#" class="btn btn-outline" id="loginBtn">Masuk</a>
+                <a href="#" class="btn btn-primary">Daftar</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="wedding-details">
+        <div class="container">
+            <div class="page-header">
+                <h1><i class="fas fa-map-marker-alt"></i> Detail Lokasi Acara</h1>
+                <p>Lengkapi informasi lokasi dan detail acara pernikahan Anda</p>
+            </div>
+            
+            <div class="form-container">
+                <form id="weddingDetailsForm">
+                    <div class="form-section">
+                        <h2><i class="fas fa-map-marked-alt"></i> Peta Lokasi</h2>
+                        <div class="map-search-container">
+                            <div class="search-box">
+                                <input type="text" id="searchBox" placeholder="Cari lokasi atau alamat...">
+                                <button type="button" id="searchButton"><i class="fas fa-search"></i></button>
+                            </div>
+                            <div class="map-controls">
+                                <button type="button" id="mapTypeBtn" class="map-control-btn" title="Ubah tampilan peta">
+                                    <i class="fas fa-layer-group"></i>
+                                </button>
+                                <button type="button" id="streetViewBtn" class="map-control-btn" title="Street View">
+                                    <i class="fas fa-street-view"></i>
+                                </button>
+                                <button type="button" id="fullscreenBtn" class="map-control-btn" title="Layar penuh">
+                                    <i class="fas fa-expand"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="map-container">
+                            <div id="map"></div>
+                            <div class="map-actions">
+                                <button type="button" id="locateMeBtn" class="btn btn-outline">
+                                    <i class="fas fa-location-arrow"></i> Lokasi Saya
+                                </button>
+                                <button type="button" id="getDirectionsBtn" class="btn btn-outline">
+                                    <i class="fas fa-directions"></i> Petunjuk Arah
+                                </button>
+                                <small>Geser pin merah ke lokasi yang tepat</small>
+                            </div>
+                        </div>
+                        <div id="directionsPanel" class="directions-panel" style="display: none;">
+                            <div class="directions-header">
+                                <h4>Petunjuk Arah</h4>
+                                <button type="button" id="closeDirections" class="btn-close">&times;</button>
+                            </div>
+                            <div id="directionsContainer"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-section">
+                        <h2><i class="fas fa-map-marker-alt"></i> Lokasi Acara</h2>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="eventProvince">Provinsi</label>
+                                <select id="eventProvince" name="eventProvince" required>
+                                    <option value="" disabled selected>Pilih Provinsi</option>
+                                    <option value="Aceh">Aceh</option>
+                                    <option value="Sumatera Utara">Sumatera Utara</option>
+                                    <option value="Sumatera Barat">Sumatera Barat</option>
+                                    <option value="Riau">Riau</option>
+                                    <option value="Kepulauan Riau">Kepulauan Riau</option>
+                                    <option value="Jambi">Jambi</option>
+                                    <option value="Bengkulu">Bengkulu</option>
+                                    <option value="Sumatera Selatan">Sumatera Selatan</option>
+                                    <option value="Kepulauan Bangka Belitung">Kepulauan Bangka Belitung</option>
+                                    <option value="Lampung">Lampung</option>
+                                    <option value="Banten">Banten</option>
+                                    <option value="Jawa Barat">Jawa Barat</option>
+                                    <option value="DKI Jakarta">DKI Jakarta</option>
+                                    <option value="Jawa Tengah">Jawa Tengah</option>
+                                    <option value="DI Yogyakarta">DI Yogyakarta</option>
+                                    <option value="Jawa Timur">Jawa Timur</option>
+                                    <option value="Bali">Bali</option>
+                                    <option value="Nusa Tenggara Barat">Nusa Tenggara Barat</option>
+                                    <option value="Nusa Tenggara Timur">Nusa Tenggara Timur</option>
+                                    <option value="Kalimantan Barat">Kalimantan Barat</option>
+                                    <option value="Kalimantan Tengah">Kalimantan Tengah</option>
+                                    <option value="Kalimantan Selatan">Kalimantan Selatan</option>
+                                    <option value="Kalimantan Timur">Kalimantan Timur</option>
+                                    <option value="Kalimantan Utara">Kalimantan Utara</option>
+                                    <option value="Sulawesi Utara">Sulawesi Utara</option>
+                                    <option value="Gorontalo">Gorontalo</option>
+                                    <option value="Sulawesi Tengah">Sulawesi Tengah</option>
+                                    <option value="Sulawesi Barat">Sulawesi Barat</option>
+                                    <option value="Sulawesi Selatan">Sulawesi Selatan</option>
+                                    <option value="Sulawesi Tenggara">Sulawesi Tenggara</option>
+                                    <option value="Maluku">Maluku</option>
+                                    <option value="Maluku Utara">Maluku Utara</option>
+                                    <option value="Papua Barat">Papua Barat</option>
+                                    <option value="Papua">Papua</option>
+                                    <option value="Papua Tengah">Papua Tengah</option>
+                                    <option value="Papua Pegunungan">Papua Pegunungan</option>
+                                    <option value="Papua Selatan">Papua Selatan</option>
+                                    <option value="Papua Barat Daya">Papua Barat Daya</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="eventCity">Kota/Kabupaten</label>
+                                <select id="eventCity" name="eventCity" class="form-control" required>
+                                    <option value="" disabled selected>Pilih Provinsi terlebih dahulu</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="eventVenue">Nama Tempat</label>
+                            <input type="text" id="eventVenue" name="eventVenue" placeholder="Contoh: Ballroom Hotel Grand Indonesia" required>
+                            <div class="form-row">
+                                <div class="form-group" style="flex: 1;">
+                                    <input type="hidden" id="eventLatitude" name="eventLatitude" required>
+                                    <input type="hidden" id="eventLongitude" name="eventLongitude" required>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Peta Lokasi</label>
+                            <div id="search-box" style="margin-bottom: 10px;"></div>
+                            <div id="map"></div>
+                            <div class="map-controls" style="margin-top: 10px; display: flex; justify-content: space-between; align-items: center;">
+                                <small class="hint">Geser dan zoom peta untuk memilih lokasi yang tepat</small>
+                                <button type="button" id="locateMe" class="btn btn-outline">
+                                    <i class="fas fa-location-arrow"></i> Gunakan Lokasi Saya
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <script>
+                        document.addEventListener('DOMContentLoaded', function() {
+                            console.log('Initializing OpenLayers map...');
+                            
+                            try {
+                                // Create a marker style
+                                const markerStyle = new ol.style.Style({
+                                    image: new ol.style.Circle({
+                                        radius: 7,
+                                        fill: new ol.style.Fill({color: '#008080'}),
+                                        stroke: new ol.style.Stroke({
+                                            color: 'white',
+                                            width: 2
+                                        })
+                                    })
+                                });
+
+                                // Create a vector source and layer for the marker
+                                const markerSource = new ol.source.Vector();
+                                const markerLayer = new ol.layer.Vector({
+                                    source: markerSource,
+                                    style: markerStyle
+                                });
+
+                                // Initialize the map with OpenStreetMap
+                                const map = new ol.Map({
+                                    target: 'map',
+                                    layers: [
+                                        new ol.layer.Tile({
+                                            source: new ol.source.OSM()
+                                        }),
+                                        markerLayer
+                                    ],
+                                    view: new ol.View({
+                                        center: ol.proj.fromLonLat([106.8456, -6.2088]),
+                                        zoom: 12
+                                    })
+                                });
+
+                                // Add zoom controls
+                                map.addControl(new ol.control.Zoom());
+                                map.addControl(new ol.control.Rotate());
+
+                                // Add marker on click
+                                map.on('click', function(evt) {
+                                    const coordinate = evt.coordinate;
+                                    updateMarker(coordinate);
+                                });
+
+                                // Function to update marker position
+                                function updateMarker(coordinate) {
+                                    markerSource.clear();
+                                    const feature = new ol.Feature({
+                                        geometry: new ol.geom.Point(coordinate)
+                                    });
+                                    markerSource.addFeature(feature);
+                                    
+                                    // Update form fields with longitude and latitude
+                                    const lonLat = ol.proj.toLonLat(coordinate);
+                                    document.getElementById('eventLongitude').value = lonLat[0].toFixed(6);
+                                    document.getElementById('eventLatitude').value = lonLat[1].toFixed(6);
+                                }
+
+                                // Initialize geocoder
+                                const geocoder = new Geocoder('nominatim', {
+                                    provider: 'osm',
+                                    lang: 'en-US',
+                                    placeholder: 'Cari lokasi...',
+                                    targetType: 'text-input',
+                                    limit: 5,
+                                    keepOpen: false,
+                                    autoComplete: true
+                                });
+                                map.addControl(geocoder);
+                                geocoder.on('addresschosen', function(evt) {
+                                    const coordinate = evt.coordinate;
+                                    updateMarker(coordinate);
+                                    map.getView().setCenter(coordinate);
+                                    map.getView().setZoom(16);
+                                });
+
+                                // Locate me button
+                                document.getElementById('locateMe').addEventListener('click', function() {
+                                    if (navigator.geolocation) {
+                                        navigator.geolocation.getCurrentPosition(function(position) {
+                                            const coordinate = ol.proj.fromLonLat([
+                                                position.coords.longitude,
+                                                position.coords.latitude
+                                            ]);
+                                            updateMarker(coordinate);
+                                            map.getView().setCenter(coordinate);
+                                            map.getView().setZoom(16);
+                                        }, function() {
+                                            alert('Tidak dapat mendapatkan lokasi Anda. Pastikan izin lokasi diaktifkan.');
+                                        });
+                                    } else {
+                                        alert('Browser Anda tidak mendukung geolokasi');
+                                    }
+                                });
+
+                                // Initial marker if coordinates exist
+                                const lng = parseFloat(document.getElementById('eventLongitude').value);
+                                const lat = parseFloat(document.getElementById('eventLatitude').value);
+                                
+                                if (!isNaN(lat) && !isNaN(lng)) {
+                                    const coordinate = ol.proj.fromLonLat([lng, lat]);
+                                    updateMarker(coordinate);
+                                    map.getView().setCenter(coordinate);
+                                    map.getView().setZoom(16);
+                                }
+
+                                console.log('OpenLayers map initialized successfully');
+                                
+                            } catch (error) {
+                                console.error('Error initializing OpenLayers map:', error);
+                                document.getElementById('map').innerHTML = `
+                                    <div style="color: red; padding: 20px; text-align: center;">
+                                        <h3>Error loading map</h3>
+                                        <p>${error.message}</p>
+                                        <p>Please check the console for more details.</p>
+                                    </div>
+                                `;
+                            }
+                        });
+                        </script>
+                    </div>
+                    
+                    <div class="form-section">
+                        <h2><i class="fas fa-info-circle"></i> Detail Alamat</h2>
+                        <div class="form-group">
+                            <label for="eventName">Nama Acara *</label>
+                            <input type="text" id="eventName" name="eventName" required 
+                                   placeholder="Contoh: Akad Nikah & Resepsi">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="venueName">Nama Gedung/Venue *</label>
+                            <input type="text" id="venueName" name="venueName" required 
+                                   placeholder="Contoh: Ballroom Hotel Grand Mercure">
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="eventDate">Tanggal Acara *</label>
+                                <input type="date" id="eventDate" name="eventDate" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="eventTime">Waktu Mulai *</label>
+                                <input type="time" id="eventTime" name="eventTime" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="fullAddress">Alamat Lengkap *</label>
+                            <textarea id="fullAddress" name="fullAddress" rows="3" required 
+                                     placeholder="Contoh: Jl. Dr. Ide Anak Agung Gde Agung No.1, RT.5/RW.2, Kuningan, Kecamatan Setiabudi, Kota Jakarta Selatan, Daerah Khusus Ibukota Jakarta 12950"></textarea>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="province">Provinsi *</label>
+                                <select id="province" name="province" required>
+                                    <option value="" disabled selected>Pilih Provinsi</option>
+                                    <!-- Will be populated by JavaScript -->
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="city">Kota/Kabupaten *</label>
+                                <select id="city" name="city" required disabled>
+                                    <option value="" disabled selected>Pilih Kota/Kabupaten</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="district">Kecamatan *</label>
+                                <input type="text" id="district" name="district" required 
+                                       placeholder="Contoh: Setiabudi">
+                            </div>
+                            <div class="form-group">
+                                <label for="postalCode">Kode Pos</label>
+                                <input type="text" id="postalCode" name="postalCode" 
+                                       placeholder="Contoh: 12950">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-section">
+                        <h2><i class="fas fa-users"></i> Informasi Tamu</h2>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="estimatedGuests">Perkiraan Jumlah Tamu *</label>
+                                <input type="number" id="estimatedGuests" name="estimatedGuests" 
+                                       min="1" required placeholder="Contoh: 200">
+                            </div>
+                            <div class="form-group">
+                                <label for="dressCode">Kode Busana</label>
+                                <select id="dressCode" name="dressCode">
+                                    <option value="">Pilih Kode Busana (Opsional)</option>
+                                    <option value="Casual">Casual</option>
+                                    <option value="Casual Elegan">Casual Elegan</option>
+                                    <option value="Formal">Formal</option>
+                                    <option value="Batik">Batik</option>
+                                    <option value="Adat">Pakaian Adat</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="additionalNotes">Catatan Tambahan</label>
+                            <textarea id="additionalNotes" name="additionalNotes" rows="3" 
+                                     placeholder="Contoh: Tersedia tempat parkir yang luas, lokasi dekat stasiun MRT"></textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-outline" id="saveDraftBtn">
+                            <i class="far fa-save"></i> Simpan Draft
+                        </button>
+                        <a href="wedding-features.html" class="btn btn-primary">
+                            <i class="fas fa-check-circle"></i> Simpan & Lanjutkan
+                        </a>
+                    </div>
+                    
+
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <img src="images/logo-white.png" alt="JoeArt Logo" class="footer-logo">
+                    <p>Platform undangan digital terbaik untuk pernikahan Anda. Hadirkan momen spesial dengan cara yang elegan dan modern.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Tautan Cepat</h4>
+                    <ul>
+                        <li><a href="#">Tentang Kami</a></li>
+                        <li><a href="#">Fitur</a></li>
+                        <li><a href="#">Harga</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Kontak</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Hubungi Kami</h4>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> hello@joeart.com</li>
+                        <li><i class="fas fa-phone"></i> +62 123 4567 890</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Jl. Contoh No. 123, Jakarta</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 JoeArt. Seluruh hak cipta dilindungi.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/wedding-details.js"></script>
+    <script src="js/location-helper.js"></script>
+</body>
+</html>

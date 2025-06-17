@@ -1,0 +1,413 @@
+/* Wedding Features Page Styles */
+:root {
+    --primary-color: #8b5a2b;
+    --secondary-color: #d4a76a;
+    --accent-color: #e6c9a0;
+    --text-color: #333;
+    --light-gray: #f9f9f9;
+    --border-color: #e0e0e0;
+    --success-color: #4caf50;
+    --white: #ffffff;
+    --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --transition: all 0.3s ease;
+    --progress-completed: #4caf50;
+    --progress-active: #2196f3;
+    --progress-pending: #e0e0e0;
+}
+
+/* Progress Steps */
+.wedding-progress {
+    margin-bottom: 40px;
+    padding: 0 20px;
+}
+
+.progress-steps {
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.progress-steps::before {
+    content: '';
+    position: absolute;
+    top: 15px;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--progress-pending);
+    z-index: 1;
+}
+
+.progress-steps .step {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 25%;
+}
+
+.progress-steps .step.completed .step-number {
+    background: var(--progress-completed);
+    border-color: var(--progress-completed);
+    color: white;
+}
+
+.progress-steps .step.active .step-number {
+    background: var(--progress-active);
+    border-color: var(--progress-active);
+    color: white;
+    transform: scale(1.1);
+}
+
+.progress-steps .step.completed::after,
+.progress-steps .step.active::after {
+    content: '';
+    position: absolute;
+    top: 15px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: var(--progress-completed);
+    z-index: -1;
+}
+
+.progress-steps .step:first-child::after {
+    left: 50%;
+    width: 50%;
+}
+
+.progress-steps .step:last-child::after {
+    width: 50%;
+}
+
+.progress-steps .step.completed:last-child::after,
+.progress-steps .step.active:last-child::after {
+    width: 50%;
+}
+
+.step-number {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: white;
+    border: 2px solid var(--progress-pending);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    margin-bottom: 8px;
+    transition: all 0.3s ease;
+}
+
+.step-label {
+    font-size: 14px;
+    color: #666;
+    text-align: center;
+    font-weight: 500;
+}
+
+.step.completed .step-label,
+.step.active .step-label {
+    color: #333;
+    font-weight: 600;
+}
+
+/* Base Styles */
+.features-container {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.features-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.features-header h1 {
+    color: var(--primary-color);
+    margin-bottom: 10px;
+    font-size: 2.2rem;
+}
+
+.features-header p {
+    color: #666;
+    font-size: 1.1rem;
+}
+
+/* Feature Cards */
+.features-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.feature-card {
+    background: var(--white);
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    border: 1px solid var(--border-color);
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.feature-info {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.feature-icon {
+    width: 60px;
+    height: 60px;
+    background: var(--light-gray);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--primary-color);
+    font-size: 1.5rem;
+}
+
+.feature-details h3 {
+    margin: 0 0 5px 0;
+    color: var(--text-color);
+    font-size: 1.2rem;
+}
+
+.feature-details p {
+    margin: 0 0 10px 0;
+    color: #666;
+    font-size: 0.95rem;
+}
+
+.feature-price {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.price {
+    font-weight: bold;
+    color: var(--primary-color);
+    font-size: 1.1rem;
+}
+
+.duration {
+    color: #888;
+    font-size: 0.9rem;
+}
+
+/* Switch Toggle */
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: var(--primary-color);
+}
+
+input:focus + .slider {
+    box-shadow: 0 0 1px var(--primary-color);
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+/* Features Summary */
+.features-summary {
+    background: var(--light-gray);
+    border-radius: 10px;
+    padding: 20px;
+    margin-top: 30px;
+    box-shadow: var(--shadow);
+}
+
+.summary-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.summary-header h3 {
+    margin: 0;
+    color: var(--primary-color);
+}
+
+.btn-text {
+    background: none;
+    border: none;
+    color: var(--primary-color);
+    cursor: pointer;
+    font-weight: 500;
+    padding: 5px 10px;
+    border-radius: 4px;
+    transition: var(--transition);
+}
+
+.btn-text:hover {
+    background: rgba(139, 90, 43, 0.1);
+}
+
+.summary-details {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.summary-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 8px 0;
+    border-bottom: 1px dashed var(--border-color);
+}
+
+.summary-item:last-child {
+    border-bottom: none;
+}
+
+#selectedFeatures {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin: 10px 0;
+    max-height: 200px;
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+.feature-summary-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0;
+    font-size: 0.95rem;
+    color: #555;
+    border-bottom: 1px dashed #eee;
+}
+
+.feature-summary-item:last-child {
+    border-bottom: none;
+}
+
+.summary-total {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 2px solid var(--border-color);
+    font-weight: bold;
+    font-size: 1.1rem;
+    color: var(--primary-color);
+}
+
+/* Form Actions */
+.form-actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-color);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .progress-steps {
+        padding: 0 10px;
+    }
+    
+    .step-label {
+        font-size: 12px;
+    }
+    
+    .feature-card {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+    }
+    
+    .feature-info {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .feature-details {
+        text-align: center;
+    }
+    
+    .form-actions {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .btn {
+        width: 100%;
+    }
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.feature-card {
+    animation: fadeIn 0.3s ease-out forwards;
+    opacity: 0;
+}
+
+/* Add delay for each card */
+.feature-card:nth-child(1) { animation-delay: 0.1s; }
+.feature-card:nth-child(2) { animation-delay: 0.2s; }
+.feature-card:nth-child(3) { animation-delay: 0.3s; }
+.feature-card:nth-child(4) { animation-delay: 0.4s; }
+.feature-card:nth-child(5) { animation-delay: 0.5s; }
+.feature-card:nth-child(6) { animation-delay: 0.6s; }
+.feature-card:nth-child(7) { animation-delay: 0.7s; }

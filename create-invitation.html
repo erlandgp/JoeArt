@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buat Undangan - JoeArt</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="create-invitation.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo-nav-group">
+                <div class="logo">
+                    <a href="index.html"><img src="images/logo.webp" alt="JoeArt Logo"></a>
+                </div>
+                <nav class="left-nav">
+                    <ul class="main-menu">
+                        <li><a href="index.html">Beranda</a></li>
+                        <li><a href="#" class="active">Buat Undangan</a></li>
+                        <li><a href="#">Template</a></li>
+                        <li><a href="#">Harga</a></li>
+                        <li><a href="#">Tentang Kami</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="header-actions">
+                <a href="#" class="btn btn-outline" id="loginBtn">Masuk</a>
+                <a href="#" class="btn btn-primary">Daftar</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="create-invitation">
+        <div class="container">
+            <div class="form-container">
+                <div class="progress-steps">
+                    <div class="step active" id="step1-indicator">
+                        <div class="step-number">1</div>
+                        <div class="step-label">Detail Undangan</div>
+                    </div>
+                    <div class="step" id="step2-indicator">
+                        <div class="step-number">2</div>
+                        <div class="step-label">Buat Akun</div>
+                    </div>
+                </div>
+                
+                <div class="form-header">
+                    <h1>Buat Undangan Digital Anda</h1>
+                    <p>Lengkapi informasi di bawah ini untuk memulai pembuatan undangan</p>
+                </div>
+                
+                <form id="invitationForm" class="invitation-form">
+                    <!-- Step 1: Invitation Details -->
+                    <div class="form-step" id="step1">
+                        <div class="form-section">
+                            <h2><i class="fas fa-heart"></i> Informasi Pasangan</h2>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="groomName">Nama Pria</label>
+                                <input type="text" id="groomName" name="groomName" required 
+                                       placeholder="Masukkan nama mempelai pria">
+                            </div>
+                            <div class="form-group">
+                                <label for="brideName">Nama Wanita</label>
+                                <input type="text" id="brideName" name="brideName" required
+                                       placeholder="Masukkan nama mempelai wanita">
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="coupleNicknames">Nama Panggilan Pasangan</label>
+                            <input type="text" id="coupleNicknames" name="coupleNicknames"
+                                   placeholder="Contoh: Rizki & Siti">
+                            <small>Nama yang akan ditampilkan di undangan</small>
+                        </div>
+                    </div>
+                    
+                    <div class="form-section">
+                        <h2><i class="fas fa-info-circle"></i> Detail Acara</h2>
+                        <div class="form-group">
+                            <label for="eventTitle">Judul Undangan</label>
+                            <input type="text" id="eventTitle" name="eventTitle" required
+                                   placeholder="Contoh: Undangan Pernikahan Kami">
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="eventDate">Tanggal Acara</label>
+                                <input type="date" id="eventDate" name="eventDate" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="eventTime">Waktu Mulai</label>
+                                <input type="time" id="eventTime" name="eventTime" required>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="eventLocation">Lokasi Acara</label>
+                            <textarea id="eventLocation" name="eventLocation" rows="3" required
+                                     placeholder="Alamat lengkap tempat acara"></textarea>
+                        </div>
+                    </div>
+                    
+                    <div class="form-section">
+                        <h2><i class="fas fa-globe"></i> Tautan Undangan</h2>
+                        <div class="form-group">
+                            <label for="customUrl">Tautan Khusus</label>
+                            <div class="input-group">
+                                <span class="input-prefix">joeart.com/</span>
+                                <input type="text" id="customUrl" name="customUrl" required
+                                       placeholder="contoh: rizki-siti" pattern="[a-zA-Z0-9-]+">
+                            </div>
+                            <small>Hanya huruf, angka, dan tanda hubung (-) yang diperbolehkan</small>
+                        </div>
+                    </div>
+                    
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-outline" id="previewBtn">Pratinjau</button>
+                            <button type="button" class="btn btn-primary" id="nextBtn">Simpan & Lanjutkan</button>
+                        </div>
+                    </div>
+
+                    <!-- Step 2: Account Creation -->
+                    <div class="form-step" id="step2" style="display: none;">
+                        <div class="form-section">
+                            <h2><i class="fas fa-user-circle"></i> Buat Akun</h2>
+                            <p>Buat akun untuk mengelola undangan Anda</p>
+                            
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" required 
+                                       placeholder="contoh: email@contoh.com">
+                            </div>
+                            
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="password">Kata Sandi</label>
+                                    <div class="password-input">
+                                        <input type="password" id="password" name="password" required
+                                               placeholder="Minimal 8 karakter" minlength="8">
+                                        <button type="button" class="toggle-password" aria-label="Tampilkan kata sandi">
+                                            <i class="far fa-eye"></i>
+                                        </button>
+                                    </div>
+                                    <small>Gunakan kombinasi huruf, angka, dan simbol untuk keamanan</small>
+                                </div>
+                                <div class="form-group">
+                                    <label for="confirmPassword">Konfirmasi Kata Sandi</label>
+                                    <div class="password-input">
+                                        <input type="password" id="confirmPassword" name="confirmPassword" required
+                                               placeholder="Ketik ulang kata sandi">
+                                        <button type="button" class="toggle-password" aria-label="Tampilkan kata sandi">
+                                            <i class="far fa-eye"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="phoneNumber">Nomor Telepon</label>
+                                <input type="tel" id="phoneNumber" name="phoneNumber" required
+                                       placeholder="Contoh: 081234567890">
+                                <small>Untuk verifikasi dan notifikasi</small>
+                            </div>
+                            
+                            <div class="form-group terms-checkbox">
+                                <input type="checkbox" id="terms" name="terms" required>
+                                <label for="terms">Saya setuju dengan <a href="#" class="terms-link">Syarat & Ketentuan</a> dan <a href="#" class="terms-link">Kebijakan Privasi</a> JoeArt</label>
+                            </div>
+                        </div>
+                        
+                        <div class="form-actions">
+                            <button type="button" class="btn btn-outline" id="backBtn">Kembali</button>
+                            <button type="submit" class="btn btn-primary">Buat Akun & Selesai</button>
+                        </div>
+                    </div>
+                </form>
+        
+        <!-- Email Verification Section (initially hidden) -->
+        <div id="emailVerificationSection" class="verification-container" style="display: none;">
+            <div class="verification-content">
+                <div class="verification-icon">
+                    <i class="fas fa-envelope-open-text"></i>
+                </div>
+                <h2>Verifikasi Email Anda</h2>
+                <p class="verification-text">Kami telah mengirimkan kode OTP ke <strong id="verificationEmail">user@example.com</strong>.</p>
+                <p class="verification-text">Masukkan 6 digit kode verifikasi yang terdapat di email Anda.</p>
+                
+                <!-- OTP Input -->
+                <div class="otp-container">
+                    <div class="otp-inputs">
+                        <input type="text" maxlength="1" pattern="\d" inputmode="numeric" class="otp-input" data-index="0">
+                        <input type="text" maxlength="1" pattern="\d" inputmode="numeric" class="otp-input" data-index="1">
+                        <input type="text" maxlength="1" pattern="\d" inputmode="numeric" class="otp-input" data-index="2">
+                        <span class="otp-divider">-</span>
+                        <input type="text" maxlength="1" pattern="\d" inputmode="numeric" class="otp-input" data-index="3">
+                        <input type="text" maxlength="1" pattern="\d" inputmode="numeric" class="otp-input" data-index="4">
+                        <input type="text" maxlength="1" pattern="\d" inputmode="numeric" class="otp-input" data-index="5">
+                    </div>
+                    <div class="otp-timer">
+                        <span id="otpTimer">1:00</span>
+                    </div>
+                    <button type="button" id="verifyOtpBtn" class="btn btn-primary" disabled>Verifikasi</button>
+                    <p id="otpError" class="error-message" style="display: none; color: #e74c3c; margin-top: 10px;"></p>
+                </div>
+                
+                <p class="verification-note">Kode OTP akan kedaluwarsa dalam <span id="otpExpiry">5 menit</span>.</p>
+                
+                <div class="verification-actions">
+                    <button id="resendVerificationBtn" class="btn btn-secondary">
+                        <i class="fas fa-redo"></i> Kirim Ulang Email
+                    </button>
+                    <button id="changeEmailBtn" class="btn btn-text">
+                        Ganti Alamat Email
+                    </button>
+                </div>
+                
+                <div class="verification-tips">
+                    <p><strong>Tidak menerima email?</strong></p>
+                    <ul>
+                        <li>Periksa folder spam atau junk mail Anda</li>
+                        <li>Pastikan email yang dimasukkan sudah benar</li>
+                        <li>Tunggu beberapa saat, kadang email membutuhkan waktu untuk sampai</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+        </div>
+    </main>
+
+    <script>
+        // Form data storage
+        let formData = {};
+        
+        // Set default date to tomorrow
+        document.addEventListener('DOMContentLoaded', function() {
+            const tomorrow = new Date();
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            document.getElementById('eventDate').value = tomorrow.toISOString().split('T')[0];
+            
+            // Set default time to 10:00
+            document.getElementById('eventTime').value = '10:00';
+            
+            // Next button click handler
+            document.getElementById('nextBtn')?.addEventListener('click', function() {
+                if (validateStep1()) {
+                    saveStep1Data();
+                    document.getElementById('step1').style.display = 'none';
+                    document.getElementById('step2').style.display = 'block';
+                    document.getElementById('step1-indicator').classList.remove('active');
+                    document.getElementById('step1-indicator').classList.add('completed');
+                    document.getElementById('step2-indicator').classList.add('active');
+                    window.scrollTo(0, 0);
+                }
+            });
+            
+            // Back button click handler
+            document.getElementById('backBtn')?.addEventListener('click', function() {
+                document.getElementById('step2').style.display = 'none';
+                document.getElementById('step1').style.display = 'block';
+                document.getElementById('step1-indicator').classList.remove('completed');
+                document.getElementById('step2-indicator').classList.remove('active');
+                window.scrollTo(0, 0);
+            });
+            
+            // Form submission
+            document.getElementById('invitationForm').addEventListener('submit', function(e) {
+                e.preventDefault();
+                if (validateStep2()) {
+                    // Show loading state
+                    const submitBtn = document.querySelector('#invitationForm button[type="submit"]');
+                    const originalBtnText = submitBtn.innerHTML;
+                    submitBtn.disabled = true;
+                    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Memproses...';
+                    
+                    // Simulate API call
+                    setTimeout(() => {
+                        const userEmail = document.getElementById('email').value;
+                        
+                        // Here you would typically send the form data to your server
+                        console.log('Form data:', {
+                            ...formData,
+                            email: userEmail,
+                            password: document.getElementById('password').value,
+                            phoneNumber: document.getElementById('phoneNumber').value
+                        });
+                        
+                        // Hide the form and show email verification
+                        document.getElementById('invitationForm').style.display = 'none';
+                        document.getElementById('emailVerificationSection').style.display = 'block';
+                        document.getElementById('verificationEmail').textContent = userEmail;
+                        
+                        // Start the OTP timer and focus first input
+                        startOtpTimer();
+                        otpInputs[0].focus();
+                        
+                        // Scroll to verification section
+                        document.getElementById('emailVerificationSection').scrollIntoView({ behavior: 'smooth' });
+                        
+                        // Initialize the resend button state
+                        document.getElementById('resendVerificationBtn').disabled = true;
+                        
+                    }, 1500);
+                }
+            });
+            
+            // OTP Input Handling
+            const otpInputs = document.querySelectorAll('.otp-input');
+            const verifyOtpBtn = document.getElementById('verifyOtpBtn');
+            const otpError = document.getElementById('otpError');
+            let otpTimer;
+            let otpExpiryTime = 300; // 5 minutes in seconds
+            
+            // Handle OTP input
+            otpInputs.forEach((input, index) => {
+                // Allow only numbers
+                input.addEventListener('input', (e) => {
+                    e.target.value = e.target.value.replace(/[^0-9]/g, '');
+                    
+                    // Auto-focus next input
+                    if (e.target.value && index < otpInputs.length - 1) {
+                        otpInputs[index + 1].focus();
+                    }
+                    
+                    // Enable verify button if all fields are filled
+                    checkOtpCompletion();
+                });
+                
+                // Handle backspace
+                input.addEventListener('keydown', (e) => {
+                    if (e.key === 'Backspace' && !e.target.value && index > 0) {
+                        otpInputs[index - 1].focus();
+                    }
+                });
+                
+                // Handle paste
+                input.addEventListener('paste', (e) => {
+                    e.preventDefault();
+                    const pasteData = e.clipboardData.getData('text/plain').trim();
+                    if (/^\d+$/.test(pasteData)) {
+                        const digits = pasteData.split('');
+                        otpInputs.forEach((input, idx) => {
+                            if (digits[idx]) {
+                                input.value = digits[idx];
+                            }
+                        });
+                        checkOtpCompletion();
+                    }
+                });
+            });
+            
+            function checkOtpCompletion() {
+                const otp = Array.from(otpInputs).map(input => input.value).join('');
+                verifyOtpBtn.disabled = otp.length !== 6;
+            }
+            
+            // Verify OTP button click handler
+            verifyOtpBtn?.addEventListener('click', function() {
+                const otp = Array.from(otpInputs).map(input => input.value).join('');
+                
+                // Show loading state
+                const originalText = verifyOtpBtn.innerHTML;
+                verifyOtpBtn.disabled = true;
+                verifyOtpBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Memverifikasi...';
+                
+                // Simulate API call to verify OTP
+                setTimeout(() => {
+                    // This is where you would verify the OTP with your backend
+                    console.log('Verifying OTP:', otp);
+                    
+                    // Clear timer and show success regardless of OTP
+                    clearInterval(otpTimer);
+                    showVerificationSuccess();
+                    
+                    // In a production environment, you would verify the OTP like this:
+                    // if (otp === '123456') {
+                    //     clearInterval(otpTimer);
+                    //     showVerificationSuccess();
+                    // } else {
+                    //     otpError.textContent = 'Kode OTP tidak valid. Silakan coba lagi.';
+                    //     otpError.style.display = 'block';
+                    //     verifyOtpBtn.disabled = false;
+                    //     verifyOtpBtn.innerHTML = originalText;
+                    // }
+                }, 1000);
+            });
+            
+            // Add skip verification button
+            const skipVerificationBtn = document.createElement('button');
+            skipVerificationBtn.id = 'skipVerificationBtn';
+            skipVerificationBtn.className = 'btn btn-text';
+            skipVerificationBtn.innerHTML = '<i class="fas fa-arrow-right"></i> Lewati Verifikasi Sekarang';
+            skipVerificationBtn.style.marginTop = '15px';
+            skipVerificationBtn.addEventListener('click', function() {
+                clearInterval(otpTimer);
+                showVerificationSuccess();
+            });
+            
+            // Add skip button after verify button
+            verifyOtpBtn.parentNode.insertBefore(skipVerificationBtn, verifyOtpBtn.nextSibling);
+            
+            function startOtpTimer() {
+                let timeLeft = otpExpiryTime;
+                updateOtpTimerDisplay(timeLeft);
+                
+                otpTimer = setInterval(() => {
+                    timeLeft--;
+                    updateOtpTimerDisplay(timeLeft);
+                    
+                    if (timeLeft <= 0) {
+                        clearInterval(otpTimer);
+                        document.getElementById('resendVerificationBtn').disabled = false;
+                    }
+                }, 1000);
+            }
+            
+            function updateOtpTimerDisplay(seconds) {
+                const minutes = Math.floor(seconds / 60);
+                const remainingSeconds = seconds % 60;
+                document.getElementById('otpTimer').textContent = 
+                    `${minutes}:${remainingSeconds < 10 ? '0' : ''}${remainingSeconds}`;
+            }
+            
+            function showVerificationSuccess() {
+                const verificationSection = document.getElementById('emailVerificationSection');
+                verificationSection.innerHTML = `
+                    <div class="verification-success">
+                        <div class="verification-icon success">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <h2>Email Berhasil Diverifikasi!</h2>
+                        <p class="verification-text">Akun Anda telah berhasil diverifikasi.</p>
+                        <p class="verification-text">Mari lengkapi detail acara pernikahan Anda.</p>
+                        <div class="verification-actions">
+                            <a href="wedding-details.html" class="btn btn-primary">
+                                <i class="fas fa-arrow-right"></i> Lengkapi Detail Acara
+                            </a>
+                        </div>
+                    </div>
+                `;
+                
+                // Scroll to top for better visibility
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+            
+            // Resend verification email
+            document.getElementById('resendVerificationBtn')?.addEventListener('click', function() {
+                const btn = this;
+                const email = document.getElementById('verificationEmail').textContent;
+                
+                // Show sending state
+                btn.disabled = true;
+                btn.classList.add('sending');
+                btn.innerHTML = '<i class="fas fa-spinner"></i> Mengirim...';
+                
+                // Reset OTP inputs
+                otpInputs.forEach(input => input.value = '');
+                verifyOtpBtn.disabled = true;
+                otpError.style.display = 'none';
+                
+                // Simulate API call to resend verification email
+                setTimeout(() => {
+                    console.log('Resending verification email to:', email);
+                    
+                    // Show success message
+                    showToast('Kode OTP baru telah dikirim ke email Anda');
+                    
+                    // Reset button state and start cooldown
+                    btn.classList.remove('sending');
+                    startResendCooldown();
+                    
+                    // Reset and restart OTP timer
+                    clearInterval(otpTimer);
+                    startOtpTimer();
+                    
+                }, 1000);
+            });
+            
+            // Change email button
+            document.getElementById('changeEmailBtn')?.addEventListener('click', function() {
+                // Show the form again and hide verification section
+                document.getElementById('emailVerificationSection').style.display = 'none';
+                document.getElementById('invitationForm').style.display = 'block';
+                
+                // Scroll to email field
+                document.getElementById('email').focus();
+            });
+            
+            // Function to handle resend cooldown
+            function startResendCooldown() {
+                const resendBtn = document.getElementById('resendVerificationBtn');
+                if (!resendBtn) return;
+                
+                let seconds = 60;
+                resendBtn.disabled = true;
+                
+                const countdown = setInterval(() => {
+                    if (seconds <= 0) {
+                        clearInterval(countdown);
+                        resendBtn.disabled = false;
+                        resendBtn.innerHTML = '<i class="fas fa-redo"></i> Kirim Ulang Email';
+                    } else {
+                        resendBtn.innerHTML = `<i class="fas fa-clock"></i> Kirim ulang (${seconds})`;
+                        seconds--;
+                    }
+                }, 1000);
+            }
+            
+            // Show toast notification
+            function showToast(message) {
+                // Create toast element if it doesn't exist
+                let toast = document.getElementById('toast');
+                if (!toast) {
+                    toast = document.createElement('div');
+                    toast.id = 'toast';
+                    document.body.appendChild(toast);
+                }
+                
+                // Set toast content
+                toast.textContent = message;
+                toast.className = 'toast show';
+                
+                // Hide toast after 3 seconds
+                setTimeout(() => {
+                    toast.classList.remove('show');
+                }, 3000);
+            }
+            
+            // Preview button
+            document.getElementById('previewBtn')?.addEventListener('click', function() {
+                if (validateStep1()) {
+                    saveStep1Data();
+                    alert('Pratinjau akan menampilkan contoh undangan dengan data yang sudah diisi.');
+                    // Here you would typically open a preview modal or page
+                }
+            });
+            
+            // Password toggle functionality
+            document.querySelectorAll('.toggle-password').forEach(button => {
+                button.addEventListener('click', function() {
+                    const input = this.previousElementSibling;
+                    const icon = this.querySelector('i');
+                    
+                    // Toggle input type
+                    const type = input.getAttribute('type') === 'password' ? 'text' : 'password';
+                    input.setAttribute('type', type);
+                    
+                    // Toggle icon
+                    icon.classList.toggle('fa-eye');
+                    icon.classList.toggle('fa-eye-slash');
+                });
+            });
+            
+            // Password confirmation validation
+            const password = document.getElementById('password');
+            const confirmPassword = document.getElementById('confirmPassword');
+            
+            function validatePasswords() {
+                if (password.value !== confirmPassword.value) {
+                    confirmPassword.setCustomValidity("Kata sandi tidak cocok");
+                } else {
+                    confirmPassword.setCustomValidity('');
+                }
+            }
+            
+            password?.addEventListener('input', validatePasswords);
+            confirmPassword?.addEventListener('input', validatePasswords);
+        });
+        
+        function validateStep1() {
+            // Simple validation - you might want to add more specific validations
+            const requiredFields = ['groomName', 'brideName', 'eventTitle', 'eventDate', 'eventLocation', 'customUrl'];
+            let isValid = true;
+            
+            requiredFields.forEach(fieldId => {
+                const field = document.getElementById(fieldId);
+                if (!field || !field.value.trim()) {
+                    field?.setCustomValidity('Field ini wajib diisi');
+                    field?.reportValidity();
+                    isValid = false;
+                } else {
+                    field?.setCustomValidity('');
+                }
+            });
+            
+            return isValid;
+        }
+        
+        function validateStep2() {
+            // Simple validation for step 2
+            const requiredFields = ['email', 'password', 'confirmPassword', 'phoneNumber', 'terms'];
+            let isValid = true;
+            
+            requiredFields.forEach(fieldId => {
+                const field = document.getElementById(fieldId);
+                if (!field || (field.type === 'checkbox' ? !field.checked : !field.value.trim())) {
+                    field?.setCustomValidity(fieldId === 'terms' ? 'Anda harus menyetujui syarat dan ketentuan' : 'Field ini wajib diisi');
+                    field?.reportValidity();
+                    isValid = false;
+                } else {
+                    field?.setCustomValidity('');
+                }
+            });
+            
+            return isValid;
+        }
+        
+        function saveStep1Data() {
+            // Save form data from step 1
+            formData = {
+                groomName: document.getElementById('groomName').value,
+                brideName: document.getElementById('brideName').value,
+                coupleNicknames: document.getElementById('coupleNicknames').value,
+                eventTitle: document.getElementById('eventTitle').value,
+                eventDate: document.getElementById('eventDate').value,
+                eventTime: document.getElementById('eventTime').value,
+                eventLocation: document.getElementById('eventLocation').value,
+                customUrl: document.getElementById('customUrl').value
+            };
+        }
+    </script>
+    <!-- Toast Notification -->
+    <style>
+        .toast {
+            visibility: hidden;
+            min-width: 250px;
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            border-radius: 4px;
+            padding: 12px 20px;
+            position: fixed;
+            z-index: 1000;
+            left: 50%;
+            bottom: 30px;
+            transform: translateX(-50%);
+            opacity: 0;
+            transition: opacity 0.3s, visibility 0.3s;
+        }
+        
+        .toast.show {
+            visibility: visible;
+            opacity: 1;
+        }
+    </style>
+    </body>
+</html>

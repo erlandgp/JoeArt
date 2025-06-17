@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fitur Tambahan - JoeArt</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="wedding-features.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo-nav-group">
+                <div class="logo">
+                    <a href="index.html"><img src="images/logo.webp" alt="Logo"></a>
+                </div>
+                <nav class="left-nav">
+                    <ul class="main-menu">
+                        <li><a href="index.html">Beranda</a></li>
+                        <li><a href="create-invitation.html" class="active">Buat Undangan</a></li>
+                        <li class="dropdown">
+                            <a href="#">Template <i class="fas fa-chevron-down"></i></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Panduan Undangan Digital</a></li>
+                                <li><a href="#">Konsultasi WhatsApp</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="header-actions">
+                <a href="#" class="btn btn-outline" id="loginBtn">Masuk</a>
+                <a href="#" class="btn btn-primary">Daftar</a>
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <div class="wedding-progress">
+                <div class="progress-steps">
+                    <div class="step completed">
+                        <div class="step-number">1</div>
+                        <div class="step-label">Detail Acara</div>
+                    </div>
+                    <div class="step active">
+                        <div class="step-number">2</div>
+                        <div class="step-label">Fitur Tambahan</div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-label">Pembayaran</div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <div class="step-label">Selesai</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="features-container">
+                <div class="features-header">
+                    <h1><i class="fas fa-star"></i> Fitur Tambahan</h1>
+                    <p>Tingkatkan pengalaman undangan pernikahan Anda dengan berbagai fitur eksklusif</p>
+                </div>
+
+                <form id="featuresForm" class="features-form">
+                    <!-- Custom Music -->
+                    <div class="feature-card" data-feature="music">
+                        <div class="feature-info">
+                            <div class="feature-icon">
+                                <i class="fas fa-music"></i>
+                            </div>
+                            <div class="feature-details">
+                                <h3>Musik Kustom</h3>
+                                <p>Tambah lagu khusus untuk undangan digital Anda</p>
+                                <div class="feature-price">
+                                    <span class="price">Rp 99.000</span>
+                                    <span class="duration">/undangan</span>
+                                </div>
+                            </div>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" name="custom_music">
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+
+                    <!-- Custom Dress Code -->
+                    <div class="feature-card" data-feature="dresscode">
+                        <div class="feature-info">
+                            <div class="feature-icon">
+                                <i class="fas fa-tshirt"></i>
+                            </div>
+                            <div class="feature-details">
+                                <h3>Kode Busana Kustom</h3>
+                                <p>Sertakan panduan kode busana khusus untuk tamu</p>
+                                <div class="feature-price">
+                                    <span class="price">Rp 49.000</span>
+                                    <span class="duration">/undangan</span>
+                                </div>
+                            </div>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" name="dress_code">
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+
+                    <!-- Gift Registry -->
+                    <div class="feature-card" data-feature="gifts">
+                        <div class="feature-info">
+                            <div class="feature-icon">
+                                <i class="fas fa-gift"></i>
+                            </div>
+                            <div class="feature-details">
+                                <h3>Daftar Hadiah</h3>
+                                <p>Buat daftar hadiah yang diinginkan untuk tamu Anda</p>
+                                <div class="feature-price">
+                                    <span class="price">Rp 149.000</span>
+                                    <span class="duration">/undangan</span>
+                                </div>
+                            </div>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" name="gift_registry">
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+
+                    <!-- Live Streaming -->
+                    <div class="feature-card" data-feature="livestream">
+                        <div class="feature-info">
+                            <div class="feature-icon">
+                                <i class="fas fa-video"></i>
+                            </div>
+                            <div class="feature-details">
+                                <h3>Live Streaming</h3>
+                                <p>Sertakan tautan live streaming untuk acara Anda</p>
+                                <div class="feature-price">
+                                    <span class="price">Rp 199.000</span>
+                                    <span class="duration">/acara</span>
+                                </div>
+                            </div>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" name="live_stream">
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+
+                    <!-- Photo Gallery -->
+                    <div class="feature-card" data-feature="gallery">
+                        <div class="feature-info">
+                            <div class="feature-icon">
+                                <i class="fas fa-images"></i>
+                            </div>
+                            <div class="feature-details">
+                                <h3>Galeri Foto</h3>
+                                <p>Buat galeri foto pra-nikah atau momen spesial</p>
+                                <div class="feature-price">
+                                    <span class="price">Rp 129.000</span>
+                                    <span class="duration">/undangan</span>
+                                </div>
+                            </div>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" name="photo_gallery">
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+
+                    <!-- RSVP Management -->
+                    <div class="feature-card" data-feature="rsvp">
+                        <div class="feature-info">
+                            <div class="feature-icon">
+                                <i class="fas fa-clipboard-check"></i>
+                            </div>
+                            <div class="feature-details">
+                                <h3>Manajemen RSVP</h3>
+                                <p>Keluar konfirmasi kehadiran tamu dengan mudah</p>
+                                <div class="feature-price">
+                                    <span class="price">Rp 79.000</span>
+                                    <span class="duration">/undangan</span>
+                                </div>
+                            </div>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" name="rsvp_management">
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+
+                    <!-- Custom Domain -->
+                    <div class="feature-card" data-feature="domain">
+                        <div class="feature-info">
+                            <div class="feature-icon">
+                                <i class="fas fa-globe"></i>
+                            </div>
+                            <div class="feature-details">
+                                <h3>Domain Kustom</h3>
+                                <p>Gunakan nama domain sendiri untuk undangan Anda</p>
+                                <div class="feature-price">
+                                    <span class="price">Rp 299.000</span>
+                                    <span class="duration">/tahun</span>
+                                </div>
+                            </div>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" name="custom_domain">
+                            <span class="slider round"></span>
+                        </label>
+                    </div>
+
+                    <div class="features-summary">
+                        <div class="summary-header">
+                            <h3>Ringkasan Biaya</h3>
+                            <button type="button" class="btn-text" id="editPackage">Ubah Paket</button>
+                        </div>
+                        <div class="summary-details">
+                            <div class="summary-item">
+                                <span>Paket Dasar</span>
+                                <span>Rp 299.000</span>
+                            </div>
+                            <div id="selectedFeatures">
+                                <!-- Selected features will be added here -->
+                            </div>
+                            <div class="summary-total">
+                                <span>Total</span>
+                                <span id="totalAmount">Rp 299.000</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-outline" id="backBtn">
+                            <i class="fas fa-arrow-left"></i> Kembali
+                        </button>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-check-circle"></i> Lanjutkan ke Pembayaran
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <img src="images/logo-white.png" alt="JoeArt Logo" class="footer-logo">
+                    <p>Platform undangan digital terbaik untuk pernikahan Anda. Hadirkan momen spesial dengan cara yang elegan dan modern.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Tautan Cepat</h4>
+                    <ul>
+                        <li><a href="#">Tentang Kami</a></li>
+                        <li><a href="#">Fitur</a></li>
+                        <li><a href="#">Harga</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Kontak</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>Hubungi Kami</h4>
+                    <ul>
+                        <li><i class="fas fa-envelope"></i> info@joeart.com</li>
+                        <li><i class="fas fa-phone"></i> +62 123 4567 890</li>
+                        <li><i class="fas fa-map-marker-alt"></i> Jl. Contoh No. 123, Jakarta</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 JoeArt. Seluruh hak cipta dilindungi.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-whatsapp"></i></a>
+                    <a href="#"><i class="fab fa-pinterest"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/wedding-features.js"></script>
+</body>
+</html>

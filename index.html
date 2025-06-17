@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JoeArt - Nikah Gak Pakai Ribet</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo-nav-group">
+                <div class="logo">
+                    <a href="#"><img src="images/logo.webp" alt="Logo"></a>
+                </div>
+                <nav class="left-nav">
+                    <ul class="main-menu">
+                        <li><a href="#" class="active">Beranda</a></li>
+                        <li><a href="create-invitation.html">Buat Undangan</a></li>
+                        <li class="dropdown">
+                            <a href="#">Template <i class="fas fa-chevron-down"></i></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">Panduan Undangan Digital</a></li>
+                                <li><a href="#">Konsultasi WhatsApp</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="header-actions">
+                <a href="#" class="btn btn-outline" id="loginBtn">Masuk</a>
+                <a href="#" class="btn btn-primary">Daftar</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div class="modal" id="loginModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Masuk ke Akun Anda</h2>
+            <form id="loginForm" class="auth-form">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Kata Sandi</label>
+                    <div class="password-input">
+                        <input type="password" id="password" name="password" required minlength="8">
+                        <button type="button" class="toggle-password">
+                            <i class="far fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="form-options">
+                    <label class="remember-me">
+                        <input type="checkbox" name="remember" checked>
+                        Ingat Saya
+                    </label>
+                    <a href="#" class="forgot-password">Lupa Kata Sandi?</a>
+                </div>
+                
+                <button type="submit" class="btn btn-primary btn-block">Masuk</button>
+                
+                <div class="divider">atau masuk dengan</div>
+                
+                <div class="social-login">
+                    <button type="button" class="btn-social btn-google">
+                        <i class="fab fa-google"></i>
+                        Google
+                    </button>
+                    <button type="button" class="btn-social btn-facebook">
+                        <i class="fab fa-facebook-f"></i>
+                        Facebook
+                    </button>
+                </div>
+                
+                <div class="register-link">
+                    Belum punya akun? <a href="#" id="showRegister">Daftar Sekarang</a>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Register Modal -->
+    <div class="modal" id="registerModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Buat Akun Baru</h2>
+            <form id="registerForm" class="auth-form">
+                <div class="form-group">
+                    <label for="regName">Nama Lengkap</label>
+                    <input type="text" id="regName" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="regEmail">Email</label>
+                    <input type="email" id="regEmail" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="regPassword">Kata Sandi</label>
+                    <div class="password-input">
+                        <input type="password" id="regPassword" name="password" required minlength="8">
+                        <button type="button" class="toggle-password">
+                            <i class="far fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="confirmPassword">Konfirmasi Kata Sandi</label>
+                    <div class="password-input">
+                        <input type="password" id="confirmPassword" name="confirmPassword" required minlength="8">
+                        <button type="button" class="toggle-password">
+                            <i class="far fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="form-group terms">
+                    <label class="checkbox-container">
+                        <input type="checkbox" id="terms" name="terms" required>
+                        <span class="checkmark"></span>
+                        Saya menyetujui <a href="#" class="terms-link">Syarat & Ketentuan</a> dan <a href="#" class="terms-link">Kebijakan Privasi</a>
+                    </label>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">Daftar Sekarang</button>
+                <div class="divider">atau daftar dengan</div>
+                <div class="social-login">
+                    <button type="button" class="btn-social btn-google">
+                        <i class="fab fa-google"></i>
+                        Google
+                    </button>
+                    <button type="button" class="btn-social btn-facebook">
+                        <i class="fab fa-facebook-f"></i>
+                        Facebook
+                    </button>
+                </div>
+                <div class="register-link">
+                    Sudah punya akun? <a href="#" id="showLogin">Masuk di sini</a>
+                </div>
+            </form>
+        </div>
+    </div>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-text">
+                        <h1 class="main-heading">Nikah Gak Pakai Ribet</h1>
+                        <p class="description">Sesuaikan desain undangan seperti keinginan kamu dari mana saja, kapan saja.</p>
+                        <a href="create-invitation.html" class="btn btn-primary">Buat Undangan</a>
+                    </div>
+                    <div class="hero-image">
+                        <div class="phone-container">
+                            <div class="phone-mockup">
+                                <img src="images/iphone.png" alt="iPhone mockup" class="floating-phone">
+                            </div>
+                        </div>
+                        <div class="donut donut-left"></div>
+                        <div class="donut donut-right"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="wave-container">
+                <div class="wave"></div>
+            </div>
+        </section>
+
+        <section class="features">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Mengapa Memilih JoeArt?</h2>
+                    <p>Solusi lengkap untuk mewujudkan undangan pernikahan digital impian Anda dengan mudah dan elegan</p>
+                </div>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-palette"></i>
+                        </div>
+                        <h3>Koleksi Template Eksklusif</h3>
+                        <p>Ratusan desain premium yang terus diperbarui, dikurasi khusus untuk menampilkan momen spesial Anda dengan sempurna</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <h3>Desain Responsif</h3>
+                        <p>Tampilan menakjubkan yang otomatis menyesuaikan layar smartphone, tablet, atau desktop tamu undangan Anda</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-sliders-h"></i>
+                        </div>
+                        <h3>Kustomisasi Mudah</h3>
+                        <p>Editor drag-and-drop intuitif yang memudahkan personalisasi tanpa perlu keahlian desain atau coding</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-chart-pie"></i>
+                        </div>
+                        <h3>Pelacakan Tamu</h3>
+                        <p>Pantau statistik lengkap pembukaan undangan, konfirmasi kehadiran, dan pesan ucapan dari tamu Anda</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-headset"></i>
+                        </div>
+                        <h3>Dukungan 24/7</h3>
+                        <p>Tim dukungan kami siap membantu kapan saja untuk memastikan perjalanan undangan digital Anda berjalan mulus</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-share-alt"></i>
+                        </div>
+                        <h3>Berbagi Mudah</h3>
+                        <p>Bagikan undangan Anda melalui WhatsApp, email, atau media sosial hanya dengan satu klik</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="testimonials">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Apa Kata Mereka?</h2>
+                    <p>Testimoni dari pasangan yang telah menggunakan layanan kami</p>
+                </div>
+                <div class="testimonial-slider">
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            <p>"Undangan digital dari JoeArt sangat memukau! Tamu-tamu kami terkesan dengan animasinya yang elegan."</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <img src="images/seleb.jpg" alt="Avatar" class="testimonial-avatar">
+                            <div class="author-info">
+                                <h4>Rina & Budi</h4>
+                                <span>Jakarta, 15 Maret 2023</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            <p>"Proses pembuatannya cepat dan mudah. Tim support sangat membantu saat kami kesulitan."</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <img src="images/seleb2.jpg" alt="Avatar" class="testimonial-avatar">
+                            <div class="author-info">
+                                <h4>Siti & Ahmad</h4>
+                                <span>Bandung, 2 Februari 2023</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-cta">
+                    <p>Bergabunglah dengan ribuan pasangan yang telah mempercayakan undangan mereka pada kami</p>
+                    <a href="#" class="btn btn-primary" id="openInvitationModal2">Buat Undangan Sekarang</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Dynamic Headline Section -->
+        <section class="headline-dynamic-section">
+          <div class="container">
+            <div class="headline-dynamic-wrapper">
+              <h2 class="headline-dynamic-title">
+                <span id="headline-dynamic-word" class="headline-dynamic-word">Sebar</span> <span class="headline-dynamic-main">Undangan Website Kamu</span>
+              </h2>
+              <p class="headline-dynamic-desc">Bukan sekedar undangan biasa, kami menyediakan beragam fitur unggulan yang pasti kamu butuhkan!</p>
+              <div class="headline-dynamic-feature-list">
+                <div class="headline-feature-card headline-feature-card-left" style="top: 20px; left: -320px;">
+                  <span class="feature-label"><span class="feature-icon"><i class="fas fa-address-book"></i></span>Kelola Tamu</span>
+                </div>
+                <div class="headline-feature-card headline-feature-card-left" style="top: 200px; left: -320px;">
+                  <span class="feature-label"><span class="feature-icon"><i class="fas fa-heart"></i></span>Wedding Wish</span>
+                </div>
+                <div class="headline-feature-card headline-feature-card-right" style="top: 40px; right: -320px;">
+                  <span class="feature-label"><span class="feature-icon"><i class="fas fa-file-alt"></i></span>Kelola Undangan</span>
+                </div>
+                <div class="headline-feature-card headline-feature-card-right" style="top: 220px; right: -320px;">
+                  <span class="feature-label"><span class="feature-icon"><i class="fas fa-paint-brush"></i></span>Kelola tampilan</span>
+                </div>
+                <div class="headline-feature-card" style="top: 360px; left: 50%; transform: translateX(-50%);">
+                  <span class="feature-label"><span class="feature-icon"><i class="fas fa-gift"></i></span>Kirim Kado</span>
+                </div>
+              </div>
+              <div class="headline-dynamic-bottom">
+                <span class="headline-dynamic-bottom-text">Bebas pilih dan gunakan desain tanpa batasan!</span>
+              </div>
+            </div>
+          </div>
+        </section>
+    </main>
+
+    <!-- Teal Statistics Section -->
+    <section class="stats-section">
+      <div class="container">
+        <h2>Ribuan Pasangan Pilih JoeArt Untuk Wujudkan Undangan Pernikahan yang Tak Terlupakan</h2>
+        <div class="stats-cards">
+          <div class="stats-card">
+            <span class="stats-number">470</span>
+            <span class="stats-label">Undangan Dibuat</span>
+          </div>
+          <div class="stats-card">
+            <span class="stats-number">1.789</span>
+            <span class="stats-label">Pasangan Tertarik</span>
+          </div>
+          <div class="stats-card">
+            <span class="stats-number">2.989</span>
+            <span class="stats-label">Telah Di Share</span>
+          </div>
+        </div>
+        <a href="create-invitation.html" class="btn btn-primary">Buat Undangan</a>
+      </div>
+    </section>
+
+    <script src="js/dynamic-headline.js"></script>
+
+    <script>
+        // DOM Elements
+        const loginModal = document.getElementById('loginModal');
+        const registerModal = document.getElementById('registerModal');
+        const loginBtn = document.getElementById('loginBtn');
+        const registerBtn = document.querySelector('.btn-primary[href="#"]');
+        const closeButtons = document.querySelectorAll('.close-modal');
+        const showRegisterLink = document.getElementById('showRegister');
+        const showLoginLink = document.getElementById('showLogin');
+        
+        // Toggle password visibility for all password fields
+        document.querySelectorAll('.toggle-password').forEach(button => {
+            button.addEventListener('click', function() {
+                const input = this.previousElementSibling;
+                const type = input.getAttribute('type') === 'password' ? 'text' : 'password';
+                input.setAttribute('type', type);
+                this.querySelector('i').classList.toggle('fa-eye');
+                this.querySelector('i').classList.toggle('fa-eye-slash');
+            });
+        });
+
+        // Show modals
+        function showModal(modal) {
+            modal.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Hide modals
+        function hideModal(modal) {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Event Listeners
+        loginBtn?.addEventListener('click', (e) => {
+            e.preventDefault();
+            showModal(loginModal);
+        });
+
+        registerBtn?.addEventListener('click', (e) => {
+            e.preventDefault();
+            showModal(registerModal);
+        });
+
+        closeButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const modal = button.closest('.modal');
+                hideModal(modal);
+            });
+        });
+
+        // Close modal when clicking outside
+        window.addEventListener('click', (e) => {
+            if (e.target.classList.contains('modal')) {
+                hideModal(e.target);
+            }
+        });
+
+        // Toggle between login and register modals
+        showRegisterLink?.addEventListener('click', (e) => {
+            e.preventDefault();
+            hideModal(loginModal);
+            showModal(registerModal);
+        });
+
+        showLoginLink?.addEventListener('click', (e) => {
+            e.preventDefault();
+            hideModal(registerModal);
+            showModal(loginModal);
+        });
+
+        // Form Validation
+        function validateEmail(email) {
+            const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(String(email).toLowerCase());
+        }
+
+        function validatePassword(password) {
+            return password.length >= 8;
+        }
+
+        // Login Form Submission
+        const loginForm = document.getElementById('loginForm');
+        loginForm?.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const rememberMe = document.querySelector('#loginForm input[name="remember"]').checked;
+            
+            // Basic validation
+            if (!validateEmail(email)) {
+                alert('Please enter a valid email address');
+                return;
+            }
+            
+            if (!validatePassword(password)) {
+                alert('Password must be at least 8 characters long');
+                return;
+            }
+            
+            // Show loading state
+            const submitBtn = loginForm.querySelector('button[type="submit"]');
+            const originalBtnText = submitBtn.innerHTML;
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Signing in...';
+            
+            try {
+                // Simulate API call
+                await new Promise(resolve => setTimeout(resolve, 1500));
+                
+                // For demo purposes - in a real app, you would validate credentials with your backend
+                console.log('Login attempt:', { email, rememberMe });
+                
+                // Show success message
+                alert('Login successful!');
+                
+                // Close modal and reset form
+                hideModal(loginModal);
+                loginForm.reset();
+                
+                // Update UI for logged in user
+                updateUserUI(email);
+                
+            } catch (error) {
+                console.error('Login error:', error);
+                alert('Invalid email or password. Please try again.');
+            } finally {
+                // Reset button state
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalBtnText;
+            }
+        });
+
+        // Register Form Submission
+        const registerForm = document.getElementById('registerForm');
+        registerForm?.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const name = document.getElementById('regName').value;
+            const email = document.getElementById('regEmail').value;
+            const password = document.getElementById('regPassword').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const termsChecked = document.getElementById('terms').checked;
+            
+            // Validation
+            if (!name.trim()) {
+                alert('Please enter your name');
+                return;
+            }
+            
+            if (!validateEmail(email)) {
+                alert('Please enter a valid email address');
+                return;
+            }
+            
+            if (!validatePassword(password)) {
+                alert('Password must be at least 8 characters long');
+                return;
+            }
+            
+            if (password !== confirmPassword) {
+                alert('Passwords do not match');
+                return;
+            }
+            
+            if (!termsChecked) {
+                alert('You must accept the terms and conditions');
+                return;
+            }
+            
+            // Show loading state
+            const submitBtn = registerForm.querySelector('button[type="submit"]');
+            const originalBtnText = submitBtn.innerHTML;
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Creating account...';
+            
+            try {
+                // Simulate API call
+                await new Promise(resolve => setTimeout(resolve, 1500));
+                
+                // For demo purposes - in a real app, you would register the user with your backend
+                console.log('Registration attempt:', { name, email });
+                
+                // Show success message
+                alert('Registration successful! Please check your email to verify your account.');
+                
+                // Close modal and reset form
+                hideModal(registerModal);
+                registerForm.reset();
+                
+                // Show login form
+                showModal(loginModal);
+                
+            } catch (error) {
+                console.error('Registration error:', error);
+                alert('Registration failed. Please try again.');
+            } finally {
+                // Reset button state
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalBtnText;
+            }
+        });
+
+        // Update UI based on login state
+        function updateUserUI(email) {
+            const headerActions = document.querySelector('.header-actions');
+            if (headerActions) {
+                headerActions.innerHTML = `
+                    <div class="user-dropdown">
+                        <button class="user-btn">
+                            <i class="fas fa-user-circle"></i>
+                            ${email}
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <div class="dropdown-menu">
+                            <a href="#"><i class="fas fa-user"></i> Profile</a>
+                            <a href="#"><i class="fas fa-cog"></i> Settings</a>
+                            <a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                        </div>
+                    </div>
+                `;
+                
+                // Add logout functionality
+                document.getElementById('logoutBtn')?.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    if (confirm('Are you sure you want to logout?')) {
+                        // Reset UI
+                        headerActions.innerHTML = `
+                            <a href="#" class="btn btn-outline" id="loginBtn">Masuk</a>
+                            <a href="#" class="btn btn-primary">Daftar</a>
+                        `;
+                        // Re-initialize event listeners
+                        initializeAuthButtons();
+                    }
+                });
+            }
+        }
+        
+        // Initialize all auth-related buttons
+        function initializeAuthButtons() {
+            // Re-attach event listeners to login and register buttons
+            const loginBtn = document.getElementById('loginBtn');
+            const registerBtn = document.querySelector('.btn-primary[href="#"]');
+            
+            loginBtn?.addEventListener('click', (e) => {
+                e.preventDefault();
+                showModal(loginModal);
+            });
+            
+            registerBtn?.addEventListener('click', (e) => {
+                e.preventDefault();
+                showModal(registerModal);
+            });
+        }
+        
+        // Initialize the auth buttons
+        initializeAuthButtons();
+        
+        // Social login handlers
+        document.querySelector('.btn-google')?.addEventListener('click', () => {
+            // In a real app, this would redirect to Google OAuth
+            window.location.href = '/auth/google';
+        });
+
+        document.querySelector('.btn-facebook')?.addEventListener('click', () => {
+            // In a real app, this would redirect to Facebook OAuth
+            window.location.href = '/auth/facebook';
+        });
+    </script>
+
+    <!-- Invitation Modal -->
+    <div class="modal" id="invitationModal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Buat Undangan Digital Anda</h2>
+            <p>Pilih jenis undangan yang ingin Anda buat:</p>
+            
+            <div class="invitation-options">
+                <div class="invitation-option">
+                    <div class="option-icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3>Undangan Pernikahan</h3>
+                    <p>Buat undangan pernikahan digital yang elegan dan berkesan</p>
+                    <a href="#" class="btn btn-primary">Pilih Template</a>
+                </div>
+                
+                <div class="invitation-option">
+                    <div class="option-icon">
+                        <i class="fas fa-baby-carriage"></i>
+                    </div>
+                    <h3>Undangan Aqiqah</h3>
+                    <p>Rayakan momen spesial kelahiran buah hati Anda</p>
+                    <a href="#" class="btn btn-outline">Segera Hadir</a>
+                </div>
+                
+                <div class="invitation-option">
+                    <div class="option-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>Undangan Wisuda</h3>
+                    <p>Bagikan kebahagiaan kelulusan Anda</p>
+                    <a href="#" class="btn btn-outline">Segera Hadir</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Modal functionality
+        const modal = document.getElementById('invitationModal');
+        const btn = document.getElementById('openInvitationModal');
+        const btn2 = document.getElementById('openInvitationModal2');
+        const span = document.getElementsByClassName('close-modal')[0];
+
+        function openModal() {
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Event listeners for first button
+        if (btn) {
+            btn.addEventListener('click', openModal);
+        }
+        
+        // Event listener for second button in testimonials
+        if (btn2) {
+            btn2.addEventListener('click', openModal);
+        }
+
+        
+        // Close modal when clicking the close button
+        if (span) {
+            span.addEventListener('click', closeModal);
+        }
+
+        // Close when clicking outside modal
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+    </script>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <a href="#" class="footer-logo">
+                        <img src="images/logo.webp" alt="Logo">
+                    </a>
+                </div>
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h3>Tentang Kami</h3>
+                        <ul>
+                            <li><a href="#">Tentang JoeArt</a></li>
+                            <li><a href="#">Karir</a></li>
+                            <li><a href="#">Blog</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h3>Layanan</h3>
+                        <ul>
+                            <li><a href="#">Undangan Digital</a></li>
+                            <li><a href="#">Wedding Planner</a></li>
+                            <li><a href="#">Konsultasi</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-column">
+                        <h3>Bantuan</h3>
+                        <ul>
+                            <li><a href="#">FAQ</a></li>
+                            <li><a href="#">Panduan</a></li>
+                            <li><a href="https://wa.me/6283896029671" target="_blank">Hubungi Kami</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-social">
+                    <a href="https://wa.me/6283896029671" class="whatsapp-btn" target="_blank">Tanya di WhatsApp</a>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-tiktok"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 JoeArt. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="js/debug.js"></script>
+</body>
+</html>

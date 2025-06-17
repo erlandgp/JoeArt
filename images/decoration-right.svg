@@ -1,0 +1,13 @@
+<svg width="150" height="300" viewBox="0 0 150 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Main circular shape -->
+  <path d="M-20 150C-20 116.863 6.86292 90 40 90C73.1371 90 100 116.863 100 150C100 183.137 73.1371 210 40 210C6.86292 210 -20 183.137 -20 150Z" fill="#008080" opacity="0.15"/>
+  
+  <!-- Smaller decorative circles -->
+  <circle cx="120" cy="100" r="20" fill="#008080" opacity="0.1"/>
+  <circle cx="130" cy="150" r="15" fill="#008080" opacity="0.1"/>
+  <circle cx="120" cy="200" r="25" fill="#008080" opacity="0.1"/>
+  
+  <!-- Decorative lines -->
+  <path d="M110 80C110 80 90 100 70 90C50 80 40 50 20 60" stroke="#008080" stroke-width="2" opacity="0.3" stroke-linecap="round"/>
+  <path d="M110 220C110 220 90 200 70 210C50 220 40 250 20 240" stroke="#008080" stroke-width="2" opacity="0.3" stroke-linecap="round"/>
+</svg>

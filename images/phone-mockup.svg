@@ -1,0 +1,44 @@
+<svg width="300" height="600" viewBox="0 0 300 600" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Phone Frame -->
+  <rect x="20" y="10" width="260" height="580" rx="30" fill="#111111"/>
+  <rect x="30" y="20" width="240" height="560" rx="20" fill="#FFFFFF"/>
+  
+  <!-- Notch -->
+  <path d="M150 30C150 27.2386 152.239 25 155 25H165C167.761 25 170 27.2386 170 30V30C170 32.7614 167.761 35 165 35H155C152.239 35 150 32.7614 150 30V30Z" fill="#111111"/>
+  
+  <!-- Wedding Invitation Content -->
+  <!-- Background with floral elements -->
+  <rect x="30" y="40" width="240" height="520" fill="#F5F5F5"/>
+  
+  <!-- Decorative elements -->
+  <path d="M30 40H270V200C270 200 240 180 210 190C180 200 150 230 120 220C90 210 60 180 30 190V40Z" fill="#E8F4F2"/>
+  
+  <!-- Floral elements -->
+  <circle cx="50" cy="80" r="15" fill="#C2E8E0"/>
+  <circle cx="250" cy="100" r="20" fill="#C2E8E0"/>
+  <circle cx="70" cy="150" r="10" fill="#C2E8E0"/>
+  <circle cx="230" cy="170" r="12" fill="#C2E8E0"/>
+  
+  <!-- Names -->
+  <text x="150" y="150" font-family="Arial" font-size="24" font-weight="bold" text-anchor="middle" fill="#008080">Rea &amp; David</text>
+  
+  <!-- Wedding Date -->
+  <text x="150" y="190" font-family="Arial" font-size="14" text-anchor="middle" fill="#666666">12 December 2023</text>
+  
+  <!-- Venue Image Placeholder -->
+  <rect x="60" y="220" width="180" height="120" rx="10" fill="#D1EAE5"/>
+  <path d="M120 280L150 250L180 280L200 260" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="90" cy="250" r="10" fill="#FFFFFF"/>
+  
+  <!-- Details Section -->
+  <rect x="60" y="360" width="180" height="40" rx="20" fill="#008080"/>
+  <text x="150" y="385" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle" fill="#FFFFFF">DETAILS</text>
+  
+  <!-- RSVP Section -->
+  <rect x="60" y="420" width="180" height="40" rx="20" fill="#FFFFFF" stroke="#008080" stroke-width="2"/>
+  <text x="150" y="445" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle" fill="#008080">RSVP</text>
+  
+  <!-- Gallery Section -->
+  <rect x="60" y="480" width="180" height="40" rx="20" fill="#FFFFFF" stroke="#008080" stroke-width="2"/>
+  <text x="150" y="505" font-family="Arial" font-size="14" font-weight="bold" text-anchor="middle" fill="#008080">GALLERY</text>
+</svg>
